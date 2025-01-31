@@ -11,6 +11,11 @@
 </head>
 
 <body>
+    <h1>
+        Calcola il tuo Codice Fiscale
+    </h1>
+
+    <!-- #region input -->
     <form action="">
         <div class="nome">
             <small>
@@ -50,14 +55,14 @@
             <small>
                 Comune o Stato di nascita:
             </small>
-            
+
             <!-- da collegare ad un json, da trovare -->
             <select name="municipality" id="municipality">
                 <option value="">
                     Seleziona un Comune
                 </option>
             </select>
-            
+
             <!-- selezione stato accessibile solo se si seleziona ESTERO? Normalmente messo su Italia -->
             <select name="country" id="country">
                 <option value="">
@@ -65,13 +70,22 @@
                 </option>
             </select>
         </div>
-        <button>
+        <button type="submit">
             Calcola CF
         </button>
     </form>
+    <!-- #endregion input -->
+
+    <!-- #region output -->
+    <div class="output">
+        <h3>
+            Il tuo Codice Fiscale è:
+        </h3>
+    </div>
+    <!-- #endregion output -->
 
     <!-- link js -->
-    <script src="./scripts/main.js"></script>
+    <script type="module" src="./scripts/main.js"></script>
 </body>
 
 </html>
