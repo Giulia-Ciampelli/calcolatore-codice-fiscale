@@ -1,11 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcolatore codice fiscale</title>
+
+    <!-- link css -->
+    <link rel="stylesheet" href="./assets/style.css">
 </head>
+
 <body>
-    
+    <form action="">
+        <div class="nome">
+            <small>
+                Nome:
+            </small>
+            <input type="text" name="first_name" placeholder="Nome" id="first_name">
+        </div>
+        <div class="cognome">
+            <small>
+                Cognome:
+            </small>
+            <input type="text" name="last_name" placeholder="Cognome" id="last_name">
+        </div>
+        <div class="data_di_nascita">
+            <small>
+                Data di nascita:
+            </small>
+            <input type="date" name="date_of_birth" id="date_of_birth">
+        </div>
+        <div class="genere">
+            <small>
+                Genere:
+            </small>
+            <select name="sex" id="sex">
+                <option value="">
+                    Seleziona:
+                </option>
+                <option value="male">
+                    M
+                </option>
+                <option value="female">
+                    F
+                </option>
+            </select>
+        </div>
+        <div class="comune_stato">
+            <small>
+                Comune o Stato di nascita:
+            </small>
+            
+            <!-- da collegare ad un json, da trovare -->
+            <select name="municipality" id="municipality">
+                <option value="">
+                    Seleziona un Comune
+                </option>
+            </select>
+            
+            <!-- selezione stato accessibile solo se si seleziona ESTERO? Normalmente messo su Italia -->
+            <select name="country" id="country">
+                <option value="">
+                    Seleziona uno Stato
+                </option>
+            </select>
+        </div>
+        <button>
+            Calcola CF
+        </button>
+    </form>
+
+    <!-- link js -->
+    <script src="./scripts/main.js"></script>
 </body>
+
 </html>
