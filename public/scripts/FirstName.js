@@ -1,7 +1,7 @@
 export default function FirstName() {
     console.log('import works!');
 
-    let nome = 'Giulia';
+    let nome = 'Vo';
     let regexSearch = nome.match(/[^aeiou]/gi); // trova tutto ciò che non è vocale
     let regexVowels = nome.match(/[aeiou]/gi); // trova tutte le vocali
 
@@ -34,13 +34,12 @@ export default function FirstName() {
             result = [...consonants, ...vowels];
             break;
 
-        default:
-
-            // Se un nome ha meno di 3 lettere, si aggiunge una X alla fine.
-            if (nome.length < 3) {
-                result = 'caso da sistemare';
-            }
-            break;
     }
+
+    // Se un nome ha meno di 3 lettere, si aggiunge una X alla fine.
+    if (nome.length < 3) {
+        result = [nome.toUpperCase() + 'X'];
+    }
+
     console.log(result);
 }
