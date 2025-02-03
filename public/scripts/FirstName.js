@@ -1,7 +1,7 @@
-export default function FirstName() {
+export default function FirstName(firstName) {
     console.log('import works!');
 
-    let nome = 'Vo';
+    let nome = firstName;
     let regexSearch = nome.match(/[^aeiou]/gi); // trova tutto ciò che non è vocale
     let regexVowels = nome.match(/[aeiou]/gi); // trova tutte le vocali
 

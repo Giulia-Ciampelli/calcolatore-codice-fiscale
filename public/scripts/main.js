@@ -9,27 +9,27 @@ let country = document.getElementById('country');
 // #endregion variabili
 
 // #region import
-import FirstName from "./firstName.js";
+import FirstName from "./FirstName.js";
 // #endregion import
 
 console.log('im alive');
 
-// importa funzioni da altri script? Sono tante
-
-// funzione nome
-
-// funzione cognome
-
-// funzione data di nascita
-
-// funzione sesso
-
-// funzione luogo di nascita
-
 // evento submit
 formElement.addEventListener('submit', (e) => {
     e.preventDefault();
-    FirstName();
+
+    // prendi i valori del form
+    let firstNameInput = firstName.value;
+    let lastNameInput = lastName.value;
+    let dateOfBirthInput = dateOfBirth.value;
+    let sexInput = sex.value;
+    let municipalityInput = municipality.value;
+    let countryInput = country.value;
+
+    // associa una funzione al suo valore
+    FirstName(firstNameInput);
+
+    console.log(firstNameInput);
 
     console.log(`the button's alive too`);
 
