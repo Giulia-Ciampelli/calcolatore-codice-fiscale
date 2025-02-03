@@ -10,28 +10,30 @@ let country = document.getElementById('country');
 
 // #region import
 import FirstName from "./FirstName.js";
+import LastName from "./LastName.js";
 // #endregion import
-
-console.log('im alive');
 
 // evento submit
 formElement.addEventListener('submit', (e) => {
     e.preventDefault();
 
     // prendi i valori del form
-    let firstNameInput = firstName.value;
     let lastNameInput = lastName.value;
+    let firstNameInput = firstName.value;
     let dateOfBirthInput = dateOfBirth.value;
     let sexInput = sex.value;
     let municipalityInput = municipality.value;
     let countryInput = country.value;
 
     // associa una funzione al suo valore
-    FirstName(firstNameInput);
+    let lastNameResult = LastName(lastNameInput).join('');
+    let firstNameResult = FirstName(firstNameInput).join('');
 
+    // combinalo
+    let fiscalCode = `${lastNameResult}${firstNameResult}`;
+
+    // stampa tutto
     console.log(firstNameInput);
-
-    console.log(`the button's alive too`);
-
-    // richiama le funzioni e stampale
+    console.log(lastNameInput);
+    document.getElementById('output_text').innerText = fiscalCode;
 })
