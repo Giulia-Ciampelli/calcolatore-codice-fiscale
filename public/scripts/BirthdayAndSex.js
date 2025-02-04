@@ -1,16 +1,3 @@
-// A: Gennaio
-// B: Febbraio
-// C: Marzo
-// D: Aprile
-// E: Maggio
-// H: Giugno
-// L: Luglio
-// M: Agosto
-// P: Settembre
-// R: Ottobre
-// S: Novembre
-// T: Dicembre
-
 export default function BirthdayAndSex(dateOfBirth, sex) {
     let dateComponents = dateOfBirth.split('-');
     let year = dateComponents[0].slice(2); // L'anno di nascita prende le ultime due cifre.

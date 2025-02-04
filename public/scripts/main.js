@@ -38,7 +38,6 @@ formElement.addEventListener('submit', (e) => {
     console.log(firstNameInput);
     console.log(lastNameInput);
     console.log(dateOfBirthInput, sexInput);
-    // console.log(dateOfBirthInput);
 
     document.getElementById('output_text').innerText = fiscalCode;
 })
