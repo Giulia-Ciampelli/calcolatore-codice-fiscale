@@ -18,7 +18,7 @@ const codiciBelfiore = (req, res) => {
         }
 
         // richiesta dei codici internazionali
-        const nationSql = `SELECT denominazione_nazione FROM gi_nazioni`;
+        const nationSql = `SELECT denominazione_nazione FROM gi_nazioni ORDER BY denominazione_nazione`;
         connection.query(nationSql, (err, nations) => {
             if (err) {
                 return res.status(500).json({
