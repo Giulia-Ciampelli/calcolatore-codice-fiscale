@@ -14,6 +14,50 @@ import LastName from "./LastName.js";
 import BirthdayAndSex from "./BirthdayAndSex.js";
 // #endregion import
 
+// funzione per riempire le opzioni comune e stato
+const fillSelect = (municipalitySelect, countrySelect, municipalityData, countryData) => {
+    municipalitySelect.innerText = `<option value="">Seleziona un Comune</option>`;
+    countrySelect.innerText = `<option value="">Seleziona uno Stato</option>`;
+    
+    // riempimento select comune
+    municipalityData.forEach(element => {
+        const option = document.createElement('option');
+        option.value = element.codice_belfiore;
+        option.innerText = element.denominazione_ita;
+        municipalitySelect.appendChild(option);
+    });
+
+    // riempimento select stato
+    countryData.forEach(element => {
+        const option = document.createElement('option');
+        option.value = element.codice_belfiore;
+        option.innerText = element.denominazione_nazione;
+        countrySelect.appendChild(option);
+    });
+}
+
+// fetch per codici comuni e nazioni
+const getBelfioreCodes = () => {
+    fetch('/api/codici-belfiore')
+    .then(res => {
+        if (!res.ok) {
+            return Promise.reject('Couldn\'t fetch data')
+        }
+        return res.json();
+    })
+    .then(data => {
+        fillSelect(municipality, country, data.municipalities, data.nations);
+    })
+    .catch(error => {
+        console.error('Error fetching municipalities and nations', error);
+    })
+}
+
+// evento caricamento pagina
+document.addEventListener('DOMContentLoaded', () => {
+    getBelfioreCodes();
+})
+
 // evento submit
 formElement.addEventListener('submit', (e) => {
     e.preventDefault();
