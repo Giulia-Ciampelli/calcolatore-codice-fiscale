@@ -12,6 +12,7 @@ let country = document.getElementById('country');
 import FirstName from "./FirstName.js";
 import LastName from "./LastName.js";
 import BirthdayAndSex from "./BirthdayAndSex.js";
+import ControlLetter from "./ControlLetter.js";
 // #endregion import
 
 // funzione per riempire le opzioni comune e stato
@@ -40,7 +41,6 @@ const fillSelect = (municipalitySelect, countrySelect, municipalityData, country
         option.value = element.codice_belfiore;
         option.innerText = element.denominazione_ita;
         municipalitySelect.appendChild(option);
-        console.log('Municipality Option Value:', option.value);
     });
 
     // riempimento select stato
@@ -49,7 +49,6 @@ const fillSelect = (municipalitySelect, countrySelect, municipalityData, country
         option.value = element.codice_belfiore;
         option.innerText = element.denominazione_nazione;
         countrySelect.appendChild(option);
-        console.log('Country Option Value:', option.value);
     });
 }
 
@@ -63,7 +62,6 @@ const getBelfioreCodes = () => {
             return res.json();
         })
         .then(data => {
-            console.log(data);
             fillSelect(municipality, country, data.municipalities, data.nations);
         })
         .catch(error => {
