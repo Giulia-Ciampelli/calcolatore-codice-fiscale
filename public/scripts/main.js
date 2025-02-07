@@ -16,15 +16,31 @@ import BirthdayAndSex from "./BirthdayAndSex.js";
 
 // funzione per riempire le opzioni comune e stato
 const fillSelect = (municipalitySelect, countrySelect, municipalityData, countryData) => {
-    municipalitySelect.innerText = `<option value="">Seleziona un Comune</option>`;
-    countrySelect.innerText = `<option value="">Seleziona uno Stato</option>`;
-    
+    while (municipalitySelect.firstChild) {
+        municipalitySelect.removeChild(municipalitySelect.firstChild);
+    }
+    while (countrySelect.firstChild) {
+        countrySelect.removeChild(countrySelect.firstChild);
+    }
+
+    // creazione opzioni default
+    const defaultMunicipalityOption = document.createElement('option');
+    defaultMunicipalityOption.value = '';
+    defaultMunicipalityOption.textContent = 'Seleziona un Comune';
+    municipalitySelect.appendChild(defaultMunicipalityOption);
+
+    const defaultCountryOption = document.createElement('option');
+    defaultCountryOption.value = 'ITALIA';
+    defaultCountryOption.textContent = 'ITALIA';
+    countrySelect.appendChild(defaultCountryOption);
+
     // riempimento select comune
     municipalityData.forEach(element => {
         const option = document.createElement('option');
         option.value = element.codice_belfiore;
         option.innerText = element.denominazione_ita;
         municipalitySelect.appendChild(option);
+        console.log('Municipality Option Value:', option.value);
     });
 
     // riempimento select stato
@@ -33,24 +49,26 @@ const fillSelect = (municipalitySelect, countrySelect, municipalityData, country
         option.value = element.codice_belfiore;
         option.innerText = element.denominazione_nazione;
         countrySelect.appendChild(option);
+        console.log('Country Option Value:', option.value);
     });
 }
 
 // fetch per codici comuni e nazioni
 const getBelfioreCodes = () => {
     fetch('/api/codici-belfiore')
-    .then(res => {
-        if (!res.ok) {
-            return Promise.reject('Couldn\'t fetch data')
-        }
-        return res.json();
-    })
-    .then(data => {
-        fillSelect(municipality, country, data.municipalities, data.nations);
-    })
-    .catch(error => {
-        console.error('Error fetching municipalities and nations', error);
-    })
+        .then(res => {
+            if (!res.ok) {
+                return Promise.reject('Couldn\'t fetch data')
+            }
+            return res.json();
+        })
+        .then(data => {
+            console.log(data);
+            fillSelect(municipality, country, data.municipalities, data.nations);
+        })
+        .catch(error => {
+            console.error('Error fetching municipalities and nations', error);
+        })
 }
 
 // evento caricamento pagina
@@ -74,14 +92,16 @@ formElement.addEventListener('submit', (e) => {
     let lastNameResult = LastName(lastNameInput).join('');
     let firstNameResult = FirstName(firstNameInput).join('');
     let birthdayAndSexResult = BirthdayAndSex(dateOfBirthInput, sexInput);
+    let belfioreResult = municipalityInput || countryInput;
 
     // combinalo
-    let fiscalCode = `${lastNameResult}${firstNameResult}${birthdayAndSexResult}`;
+    let fiscalCode = `${lastNameResult}${firstNameResult}${birthdayAndSexResult}${belfioreResult}`;
 
     // stampa tutto
     console.log(firstNameInput);
     console.log(lastNameInput);
     console.log(dateOfBirthInput, sexInput);
+    console.log(municipalityInput, countryInput);
 
     document.getElementById('output_text').innerText = fiscalCode;
 })

@@ -9,7 +9,7 @@ const index = (req, res) => {
 const codiciBelfiore = (req, res) => {
     
     // richiesta dei codici comune italiani
-    const municipalitySql = `SELECT denominazione_ita FROM gi_comuni_nazioni_cf`;
+    const municipalitySql = `SELECT denominazione_ita, codice_belfiore FROM gi_comuni_nazioni_cf WHERE data_fine_validita IS NULL`;
     connection.query(municipalitySql, (err, municipalities) => {
         if (err) {
             return res.status(500).json({
@@ -18,7 +18,7 @@ const codiciBelfiore = (req, res) => {
         }
 
         // richiesta dei codici internazionali
-        const nationSql = `SELECT denominazione_nazione FROM gi_nazioni ORDER BY denominazione_nazione`;
+        const nationSql = `SELECT denominazione_nazione, codice_belfiore FROM gi_nazioni ORDER BY denominazione_nazione`;
         connection.query(nationSql, (err, nations) => {
             if (err) {
                 return res.status(500).json({
@@ -37,7 +37,7 @@ const codiciBelfiore = (req, res) => {
 
 // show
 const show = (req, res) => {
-    const belfioreItaliaSql = `SELECT codice_belfiore FROM gi_comuni_nazioni_cf WHERE denominazione_ita=?`;
+    const belfioreItaliaSql = `SELECT codice_belfiore FROM gi_comuni_nazioni_cf WHERE denominazione_ita=? AND data_fine_validita IS NULL`;
     const belfioreEsteroSql = `SELECT codice_belfiore FROM gi_nazioni WHERE denominazione_nazione=?`;
     const nomeItalia = req.params.denominazione_ita;
     const nomeEstero = req.params.denominazione_nazione;
