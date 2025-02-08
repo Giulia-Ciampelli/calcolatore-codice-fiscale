@@ -27,7 +27,7 @@ const fillSelect = (municipalitySelect, countrySelect, municipalityData, country
     // creazione opzioni default
     const defaultMunicipalityOption = document.createElement('option');
     defaultMunicipalityOption.value = '';
-    defaultMunicipalityOption.textContent = 'Seleziona un Comune';
+    defaultMunicipalityOption.textContent = '-- Seleziona un Comune --';
     municipalitySelect.appendChild(defaultMunicipalityOption);
 
     const defaultCountryOption = document.createElement('option');
@@ -91,15 +91,12 @@ formElement.addEventListener('submit', (e) => {
     let firstNameResult = FirstName(firstNameInput).join('');
     let birthdayAndSexResult = BirthdayAndSex(dateOfBirthInput, sexInput);
     let belfioreResult = municipalityInput || countryInput;
+    let controlLetterResult = ControlLetter(lastNameResult, firstNameResult, birthdayAndSexResult, municipalityInput, countryInput);
 
     // combinalo
-    let fiscalCode = `${lastNameResult}${firstNameResult}${birthdayAndSexResult}${belfioreResult}`;
+    let fiscalCode = `${lastNameResult}${firstNameResult}${birthdayAndSexResult}${belfioreResult}${controlLetterResult}`;
+    console.log(controlLetterResult);
 
     // stampa tutto
-    console.log(firstNameInput);
-    console.log(lastNameInput);
-    console.log(dateOfBirthInput, sexInput);
-    console.log(municipalityInput, countryInput);
-
     document.getElementById('output_text').innerText = fiscalCode;
 })

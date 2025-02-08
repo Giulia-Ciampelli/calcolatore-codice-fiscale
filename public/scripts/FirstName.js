@@ -38,7 +38,5 @@ export default function FirstName(firstName) {
         result = [nome.toUpperCase() + 'X'];
     }
 
-    console.log(result);
-
     return result;
 }

@@ -46,6 +46,14 @@
 // 8:	I	18:	S		
 // 9:	J	19:	T	
 
-export default function ControlLetter(firstName, lastName, dateOfBirth, sex, municipality, country) {
-    console.log('Control letter');
+export default function ControlLetter(lastNameResult, firstNameResult, birthdayAndSexResult, municipalityInput, countryInput) {
+    const letters = {
+        lastNameResult: lastNameResult.split(""),
+        firstNameResult: firstNameResult.split(""),
+        birthdayAndSexResult: birthdayAndSexResult.split(""),
+        municipalityInput: municipalityInput.split(""),
+        countryInput: countryInput.split("")
+    };
+
+    return letters;
 }

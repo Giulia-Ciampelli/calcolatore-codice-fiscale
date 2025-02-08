@@ -32,7 +32,5 @@ export default function LastName(lastName) {
         result = [cognome.toUpperCase() + 'X'];
     }
 
-    console.log(result);
-
     return result;
 }
