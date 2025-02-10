@@ -1,12 +1,12 @@
 export default function ControlLetter(lastNameResult, firstNameResult, birthdayAndSexResult, municipalityInput, countryInput) {
     let selectInput = municipalityInput ? municipalityInput : countryInput;
 
-    const letters = {
-        lastNameResult: lastNameResult.split(""),
-        firstNameResult: firstNameResult.split(""),
-        birthdayAndSexResult: birthdayAndSexResult.split(""),
-        selectInput: selectInput.split("")
-    };
+    const letters = new Map([
+        ['lastNameResult', lastNameResult.split("")],
+        ['firstNameResult', firstNameResult.split("")],
+        ['birthdayAndSexResult', birthdayAndSexResult.split("")],
+        ['selectInput', selectInput.split("")]
+    ]);
 
     console.log(letters);
 
@@ -26,26 +26,36 @@ export default function ControlLetter(lastNameResult, firstNameResult, birthdayA
     let oddSum = 0;
     let evenSum = 0;
 
-    const allStrings = [letters.lastNameResult, letters.firstNameResult, letters.birthdayAndSexResult, letters.selectInput];
+    const allStrings = [
+        ...letters.get('lastNameResult'),
+        ...letters.get('firstNameResult'),
+        ...letters.get('birthdayAndSexResult'),
+        ...letters.get('selectInput')
+    ];
 
     // conta tutti i caratteri in tutte le stringhe e assegnali alla tabella corrispondente
-    allStrings.forEach((string, index) => {
-        string.forEach((char, idx) => {
-            const oddChar = oddLetters[char.toUpperCase()] || 0;
-            const evenChar = evenLetters[char.toUpperCase()] || 0;
 
-            if (idx % 2 === 0) {
-                evenSum += evenChar;
-            }
-            else {
-                oddSum += oddChar;
-            }
-        })
+    allStrings.forEach((char, idx) => {
+        const adjustIndex = idx + 1; // altrimenti conta da 0
+
+        const oddChar = oddLetters[char.toUpperCase()] || 0;
+        const evenChar = evenLetters[char.toUpperCase()] || 0;
+
+        console.log(`Char: ${char}, index: ${idx}, odd: ${oddChar}, even: ${evenChar}`);
+
+        if (adjustIndex % 2 === 0) {
+            evenSum += evenChar;
+        }
+        else {
+            oddSum += oddChar;
+        }
     })
 
     // somma le somme iniziali e dividila per 26
     const totalSum = oddSum + evenSum;
+    console.log(totalSum);
     const remainder = totalSum % 26;
+    console.log(remainder);
 
     // converti il resto con la tabella finale
     const result = remainderLetters[remainder];
