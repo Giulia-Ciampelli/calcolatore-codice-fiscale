@@ -90,7 +90,16 @@ formElement.addEventListener('submit', (e) => {
     let lastNameResult = LastName(lastNameInput).join('');
     let firstNameResult = FirstName(firstNameInput).join('');
     let birthdayAndSexResult = BirthdayAndSex(dateOfBirthInput, sexInput);
-    let belfioreResult = municipalityInput || countryInput;
+
+    // validazione codici belfiore
+    let belfioreResult = '';
+    if (municipalityInput) {
+        belfioreResult = municipalityInput;
+    }
+    else if (countryInput) {
+        belfioreResult = countryInput;
+    }
+
     let controlLetterResult = ControlLetter(lastNameResult, firstNameResult, birthdayAndSexResult, municipalityInput, countryInput);
 
     // combinalo
